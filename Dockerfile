@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Set the working directory
 WORKDIR /app
 
-# Install necessary libraries for GPU support
+# Install necessary libraries
 RUN apt-get update && apt-get install -y \
     libgl1-mesa-glx \
     && rm -rf /var/lib/apt/lists/*
@@ -19,7 +19,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set environment variables
-ENV HF_TOKEN=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
+ENV HF_TOKEN=your_huggingface_token
 ENV MODEL_NAME=meta-llama/Meta-Llama-3-8B-Instruct
 ENV MAX_TOKENS=128
 ENV TEMPERATURE=0.7
@@ -28,4 +28,4 @@ ENV TEMPERATURE=0.7
 EXPOSE 5000
 
 # Define the command to run the app
-CMD ["python", "app/app.py"]
+CMD ["python", "-m", "app.app"]

@@ -12,14 +12,6 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    services:
-      flask_app:
-        build:
-          context: .
-        ports:
-          - 5000:5000
-        options: --runtime=nvidia
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -42,16 +34,18 @@ jobs:
         context: .
         push: false
         tags: ${{ secrets.DOCKER_USERNAME }}/the_flask_app:test
-        build-args:
-          - BUILDKIT_INLINE_CACHE=1
         platforms: linux/amd64
 
     - name: Run Docker container
-      run: docker-compose up -d
+      run: docker-compose up -d --build
+
+    - name: Wait for service to be healthy
+      run: |
+        sleep 30
+        docker-compose ps
 
     - name: Run tests
-      run: |
-        docker-compose exec flask_app pytest
+      run: docker-compose exec the_flask_app pytest
 
     - name: Build and push Docker image
       if: success()
@@ -60,6 +54,4 @@ jobs:
         context: .
         push: true
         tags: ${{ secrets.DOCKER_USERNAME }}/the_flask_app:latest
-        build-args:
-          - BUILDKIT_INLINE_CACHE=1
         platforms: linux/amd64

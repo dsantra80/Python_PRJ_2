@@ -14,7 +14,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Set up QEMU
       uses: docker/setup-qemu-action@v2
@@ -34,7 +34,7 @@ jobs:
 
     - name: Run Docker container
       run: |
-        docker run --rm -d --name flask_app -e HF_TOKEN=${{ secrets.HF_TOKEN }} -e MODEL_NAME=gpt2 -e MAX_TOKENS=128 -e TEMPERATURE=0.7 -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/flask_app:test
+        docker run --rm -d --name flask_app -e HF_TOKEN=${{ secrets.HF_TOKEN }} -e MODEL_NAME=meta-llama/Meta-Llama-3-8B-Instruct -e MAX_TOKENS=128 -e TEMPERATURE=0.7 -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/flask_app:test
 
     - name: Wait for the container to be healthy
       run: |

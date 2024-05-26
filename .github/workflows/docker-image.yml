@@ -51,7 +51,7 @@ jobs:
 
     - name: Run tests
       run: |
-        docker-compose exec the_flask_app pytest
+        docker-compose exec flask_app pytest
 
     - name: Build and push Docker image
       if: success()

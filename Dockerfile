@@ -28,4 +28,4 @@ ENV TEMPERATURE=0.7
 EXPOSE 5000
 
 # Define the command to run the app
-CMD ["python", "-m", "app.app"]
+CMD ["python", "-m", "flask_app.app"]

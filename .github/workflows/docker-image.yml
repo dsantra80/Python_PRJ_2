@@ -53,5 +53,5 @@ jobs:
       with:
         context: .
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/flask_app:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/the_flask_app:latest
         platforms: linux/amd64

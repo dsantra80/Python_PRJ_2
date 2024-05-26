@@ -32,9 +32,9 @@ jobs:
       run: |
         docker build --tag ${{ secrets.DOCKER_USERNAME }}/flask_app:test .
 
-    - name: Run Docker container
-      run: |
-        docker run --rm -d --gpus all --name flask_app -e HF_TOKEN=${{ secrets.HF_TOKEN }} -e MODEL_NAME=gpt2 -e MAX_TOKENS=128 -e TEMPERATURE=0.7 -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/flask_app:test
+   # - name: Run Docker container
+   #   run: |
+   #     docker run --rm -d --gpus all --name flask_app -e HF_TOKEN=${{ secrets.HF_TOKEN }} -e MODEL_NAME=gpt2 -e MAX_TOKENS=128 -e TEMPERATURE=0.7 -p 5000:5000 ${{ secrets.DOCKER_USERNAME }}/flask_app:test
 
     - name: Run tests
       run: |

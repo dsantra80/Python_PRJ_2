@@ -1,0 +1,8 @@
+flask
+python-dotenv
+torch
+transformers
+bitsandbytes
+accelerate
+pytest
+requests

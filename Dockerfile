@@ -19,10 +19,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 # Set environment variables
-#ENV HF_TOKEN=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
-#ENV MODEL_NAME=meta-llama/Meta-Llama-3-8B-Instruct
-#ENV MAX_TOKENS=128
-#ENV TEMPERATURE=0.7
+ENV HF_TOKEN=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
+ENV MODEL_NAME=meta-llama/Meta-Llama-3-8B-Instruct
+ENV MAX_TOKENS=128
+ENV TEMPERATURE=0.7
 
 # Expose the port the app runs on
 EXPOSE 5000
